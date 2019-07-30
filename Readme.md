@@ -2,7 +2,7 @@ Readme!
 
 **Requirements**
 
-firstly you must run follow commands:
+firstly you must run following commands to install spacy models:
 
 `python -m spacy download en`
 
