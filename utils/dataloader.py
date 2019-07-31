@@ -1,15 +1,7 @@
-import torch
-import torch.nn as nn
-import torch.optim as optim
-
 from torchtext.datasets import TranslationDataset, Multi30k
 from torchtext.data import Field, BucketIterator
 
 import spacy
-
-import random
-import math
-import time
 
 
 
@@ -23,6 +15,7 @@ class DataLoader:
 
     def load_data(self, batch_size):
         train_data, valid_data, test_data = Multi30k.splits(exts=('.de', '.en'), fields=(self.SRC, self.TRG))
+        print(vars(train_data.examples[0]))
         self.SRC.build_vocab(train_data, min_freq = 2)
         self.TRG.build_vocab(train_data, min_freq = 2)
         train_iterator, valid_iterator, test_iterator= BucketIterator.splits((train_data, valid_data, test_data), batch_size=batch_size, device=self.dev)
