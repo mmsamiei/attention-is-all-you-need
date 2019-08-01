@@ -14,8 +14,6 @@ import math
 import os
 import time
 
-from modules.self_attention import SelfAttention
-from modules.position_wise_feed_forward import PositionWiseFeedForward
 
 
 class EncoderLayer(nn.Module):
