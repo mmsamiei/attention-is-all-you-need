@@ -14,7 +14,7 @@ import math
 import os
 import time
 
-class PositionWiseFeedForward(nn.Module):
+class PositionwiseFeedforward(nn.Module):
     def __init__(self, hid_dim, pf_dim, dropout):
         super().__init__()
 
