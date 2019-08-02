@@ -47,3 +47,18 @@ class PositionwiseFeedforward(nn.Module):
         # x = [batch_size, sent_len, hid_dim]
 
         return x
+
+if __name__ == '__main__':
+
+    hid_dim = 512
+    pf_dim = 128
+    dropout = 0.5
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+    positionwise_feedforward = PositionwiseFeedforward(hid_dim, pf_dim, dropout).to(device)
+
+    batch_size = 64
+    sent_len = 40
+    x = torch.rand(batch_size, sent_len, hid_dim).to(device)
+    result = positionwise_feedforward(x)
+    print(result.shape)
