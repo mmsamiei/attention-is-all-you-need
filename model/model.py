@@ -32,15 +32,20 @@ class Modeling():
         self.device = device
 
     def create_model(self, hid_dim, num_encoder_layer, num_decoder_layer, num_head, pf_dim, dropout):
-        self.encoder = Encoder(self, self.vocab_size, hid_dim, num_encoder_layer, num_head, pf_dim,
+        self.encoder = Encoder(self.vocab_size, hid_dim, num_encoder_layer, num_head, pf_dim,
                                EncoderLayer, SelfAttention, PositionwiseFeedforward, dropout, self.device)
         self.decoder = dec = Decoder(self.vocab_size, hid_dim, num_decoder_layer, num_head, pf_dim,
                                      DecoderLayer, SelfAttention, PositionwiseFeedforward, dropout, self.device)
         self.model = Seq2Seq(self.encoder, self.decoder, self.pad_idx, self.device).to(self.device)
         return self.model
 
+    def count_parameters(self):
+        return sum(p.numel() for p in self.model.parameters() if p.requires_grad)
 
-
+    def init(self):
+        for p in self.model.parameters():
+            if p.dim() > 1:
+                nn.init.xavier_uniform_(p)
 
 
 
