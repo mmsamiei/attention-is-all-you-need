@@ -23,10 +23,10 @@ from modules.decoder_layer import DecoderLayer
 from modules.seq2seq import Seq2Seq
 
 
-def create_model(vocab_size, hid_dim, num_encoder_layer, num_decoder_layer, num_head, pf_dim, dropout, pad_idx, device):
-    encoder = Encoder(vocab_size, hid_dim, num_encoder_layer, num_head, pf_dim,
+def create_model(src_vocab_size, trg_vocab_size, hid_dim, num_encoder_layer, num_decoder_layer, num_head, pf_dim, dropout, pad_idx, device):
+    encoder = Encoder(src_vocab_size, hid_dim, num_encoder_layer, num_head, pf_dim,
                       EncoderLayer, SelfAttention, PositionwiseFeedforward, dropout, device)
-    decoder = dec = Decoder(vocab_size, hid_dim, num_decoder_layer, num_head, pf_dim,
+    decoder = dec = Decoder(trg_vocab_size, hid_dim, num_decoder_layer, num_head, pf_dim,
                             DecoderLayer, SelfAttention, PositionwiseFeedforward, dropout, device)
     model = Seq2Seq(encoder, decoder, pad_idx, device).to(device)
     return model
