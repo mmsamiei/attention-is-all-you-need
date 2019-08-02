@@ -29,7 +29,7 @@ class EncoderLayer(nn.Module):
         # src = [batch_size, src_sent_len, hid_dim]
         # src_mask = [batch_size, src_sent_len]
 
-        src = self.ln(src + self.do(self.sa(src, src, src_mask)))
+        src = self.ln(src + self.do(self.sa(src, src, src, src_mask)))
         src = self.ln(src + self.do(self.pf(src)))
 
         return src
