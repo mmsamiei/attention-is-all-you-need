@@ -21,6 +21,12 @@ class DataLoader:
         train_iterator, valid_iterator, test_iterator= BucketIterator.splits((train_data, valid_data, test_data), batch_size=batch_size, device=self.dev)
         return train_iterator, valid_iterator, test_iterator
 
+    def src_vocab_size(self):
+        return len(self.SRC.vocab)
+
+    def get_pad_idx(self):
+        return self.SRC.vocab.stoi['<pad>']
+
 
 
 
