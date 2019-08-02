@@ -42,6 +42,7 @@ class SelfAttention(nn.Module):
         K = self.w_k(key)
         V = self.w_v(value)
 
+
         #Q, K, V = [batch_size, sent_len, hid_dim]
 
         Q = Q.view(batch_size, -1, self.n_heads, self.hid_dim // self.n_heads).permute(0, 2, 1, 3)

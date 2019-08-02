@@ -43,7 +43,7 @@ class Seq2Seq(nn.Module):
 
         # src = [batch_size, src_sent_len]
         # trg = [batch_size, trg_sent_len]
-        src_mask, trg_mask = self.make_masks(src, trg)
+        src_mask, trg_mask = self.make_mask(src, trg)
         enc_src = self.encoder(src, src_mask)
         # enc_src = [batch size, src sent len, hid dim]
         out = self.decoder(trg, enc_src, trg_mask, src_mask)

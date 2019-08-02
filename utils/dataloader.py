@@ -24,6 +24,9 @@ class DataLoader:
     def src_vocab_size(self):
         return len(self.SRC.vocab)
 
+    def trg_vocab_size(self):
+        return len(self.TRG.vocab)
+
     def get_pad_idx(self):
         return self.SRC.vocab.stoi['<pad>']
 
