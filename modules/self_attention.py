@@ -84,14 +84,14 @@ if __name__ == '__main__':
     n_heads = 8
     dropout = 0.5
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    self_attention = SelfAttention(hid_dim, n_heads, dropout, device)
+    self_attention = SelfAttention(hid_dim, n_heads, dropout, device).to(device)
 
     batch_size = 64
     sent_len = 40
 
-    query = torch.rand(batch_size, sent_len, hid_dim)
-    key = torch.rand(batch_size, sent_len, hid_dim)
-    value = torch.rand(batch_size, sent_len, hid_dim)
+    query = torch.rand(batch_size, sent_len, hid_dim).to(device)
+    key = torch.rand(batch_size, sent_len, hid_dim).to(device)
+    value = torch.rand(batch_size, sent_len, hid_dim).to(device)
 
     result = self_attention(query, key, value)
     print(result.shape)
