@@ -51,7 +51,6 @@ class Decoder(nn.Module):
 
         pos = torch.arange(0, trg.shape[1]).unsqueeze(0).repeat(trg.shape[0], 1).to(self.device)
         trg = self.do((self.tok_embedding(trg) * self.scale) + self.pos_embedding(pos))
-        #TODO
 
         # trg = [batch_size, trg_sent_len, hid_dim]
 
